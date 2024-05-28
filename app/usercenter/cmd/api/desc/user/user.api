@@ -1,0 +1,76 @@
+syntax = "v1"
+
+info (
+    title: "User Instance"
+    desc: "User Instance"
+    author: "PYQ"
+    email: "eilo.pengyq@foxmail.com"
+    version: "v1"
+)
+
+// define the user struct
+type User {
+	Id       int64  `json:"id"`
+	Mobile   string `json:"mobile"`
+	Nickname string `json:"nickname"`
+	Sex      int64  `json:"sex"`
+	Avatar   string `json:"avatar"`
+	Info     string `json:"info"`
+}
+
+// define the register service
+type (
+    // http request body
+	RegisterReq {
+		Mobile   string `json:"mobile"`
+		Password string `json:"password"`
+	}
+    // http response body
+	RegisterResp {
+		AccessToken  string `json:"accessToken"`
+		AccessExpire int64  `json:"accessExpire"`
+		RefreshAfter int64  `json:"refreshAfter"`
+	}
+)
+
+// define the login service
+type (
+    // http request body
+	LoginReq {
+		Mobile   string `json:"mobile"`
+		Password string `json:"password"`
+	}
+    // http response body
+	LoginResp {
+		AccessToken  string `json:"accessToken"`
+		AccessExpire int64  `json:"accessExpire"`
+		RefreshAfter int64  `json:"refreshAfter"`
+	}
+)
+
+// define the wechat mini program auth service
+type (
+    // http request body
+	WXMiniAuthReq {
+		Code          string `json:"code"`
+		IV            string `json:"iv"`
+		EncryptedData string `json:"encryptedData"`
+	}
+    // http response body
+	WXMiniAuthResp {
+		AccessToken  string `json:"accessToken"`
+		AccessExpire int64  `json:"accessExpire"`
+		RefreshAfter int64  `json:"refreshAfter"`
+	}
+)
+
+// define the user info service
+type (
+    // no need for http request body, get user's own info
+	UserInfoReq {
+	}
+    // http response body
+	UserInfoResp {
+		UserInfo User `json:"userInfo"`
+	}
+)

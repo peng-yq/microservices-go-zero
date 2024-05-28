@@ -1,0 +1,45 @@
+syntax = "v1"
+
+info (
+	title:   "User Center Service"
+	desc:    "User Center Service"
+	author:  "PYQ"
+	email:   "eilo.pengyq@foxmail.com"
+	version: "v1"
+)
+
+import (
+	"user/user.api"
+)
+
+// register and login service no need for jwt auth
+@server (
+	prefix: usercenter/v1
+	group:  user
+)
+service usercenter {
+	@doc "register"
+	@handler register
+	post /user/register (RegisterReq) returns (RegisterResp)
+
+	@doc "login"
+	@handler login
+	post /user/login (LoginReq) returns (LoginResp)
+}
+
+// detail and wxMiniAuth service need jwt auth
+@server (
+	prefix: usercenter/v1
+	group:  user
+	jwt:    JwtAuth
+)
+service usercenter {
+	@doc "get user info"
+	@handler detail
+	post /user/detail (UserInfoReq) returns (UserInfoResp)
+
+	@doc "wechat mini program auth"
+	@handler wxMiniAuth
+	post /user/wxMiniAuth (WXMiniAuthReq) returns (WXMiniAuthResp)
+}
+
