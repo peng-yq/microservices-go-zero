@@ -1,0 +1,110 @@
+global:
+  scrape_interval: 15s  # Default scrape interval
+  external_labels:
+    monitor: 'codelab-monitor'
+
+scrape_configs:
+  # Monitoring Prometheus itself
+  - job_name: 'prometheus'
+    scrape_interval: 5s  # Specific scrape interval for this job
+    static_configs:
+      - targets: ['127.0.0.1:9090']
+
+  # Order API service
+  - job_name: 'order-api'
+    static_configs:
+      - targets: ['microservices:4001']
+        labels:
+          job: order-api
+          app: order-api
+          env: dev
+
+  # Order RPC service
+  - job_name: 'order-rpc'
+    static_configs:
+      - targets: ['microservices:4002']
+        labels:
+          job: order-rpc
+          app: order-rpc
+          env: dev
+
+  # Order message queue
+  - job_name: 'order-mq'
+    static_configs:
+      - targets: ['microservices:4003']
+        labels:
+          job: order-mq
+          app: order-mq
+          env: dev
+
+  # Payment API service
+  - job_name: 'payment-api'
+    static_configs:
+      - targets: ['microservices:4004']
+        labels:
+          job: payment-api
+          app: payment-api
+          env: dev
+
+  # Payment RPC service
+  - job_name: 'payment-rpc'
+    static_configs:
+      - targets: ['microservices:4005']
+        labels:
+          job: payment-rpc
+          app: payment-rpc
+          env: dev
+
+  # Travel API service
+  - job_name: 'travel-api'
+    static_configs:
+      - targets: ['microservices:4006']
+        labels:
+          job: travel-api
+          app: travel-api
+          env: dev
+
+  # Travel RPC service
+  - job_name: 'travel-rpc'
+    static_configs:
+      - targets: ['microservices:4007']
+        labels:
+          job: travel-rpc
+          app: travel-rpc
+          env: dev
+
+  # User Center API service
+  - job_name: 'usercenter-api'
+    static_configs:
+      - targets: ['microservices:4008']
+        labels:
+          job: usercenter-api
+          app: usercenter-api
+          env: dev
+
+  # User Center RPC service
+  - job_name: 'usercenter-rpc'
+    static_configs:
+      - targets: ['microservices:4009']
+        labels:
+          job: usercenter-rpc
+          app: usercenter-rpc
+          env: dev
+
+  # Message queue job
+  - job_name: 'mqueue-job'
+    static_configs:
+      - targets: ['microservices:4010']
+        labels:
+          job: mqueue-job
+          app: mqueue-job
+          env: dev
+
+  # Message queue scheduler
+  - job_name: 'mqueue-scheduler'
+    static_configs:
+      - targets: ['microservices:4011']
+        labels:
+          job: mqueue-scheduler
+          app: mqueue-scheduler
+          env: dev
