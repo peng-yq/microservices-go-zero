@@ -1,0 +1,10 @@
+#deploy data
+
+data/*
+!data/.gitkeep
+
+#vscode
+.vscode
+.vscode/
+
+
