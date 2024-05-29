@@ -1,6 +1,6 @@
 Name: usercenter-api
 Host: 0.0.0.0
-Port: 3004
+Port: 1004
 Mode: dev
 
 # jwtAuth
