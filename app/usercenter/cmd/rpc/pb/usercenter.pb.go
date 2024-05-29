@@ -25,12 +25,12 @@ type User struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id       int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
-	Mobile   string `protobuf:"bytes,2,opt,name=mobile,proto3" json:"mobile"`
-	Nickname string `protobuf:"bytes,3,opt,name=nickname,proto3" json:"nickname"`
-	Sex      int64  `protobuf:"varint,4,opt,name=sex,proto3" json:"sex"`
-	Avatar   string `protobuf:"bytes,5,opt,name=avatar,proto3" json:"avatar"`
-	Info     string `protobuf:"bytes,6,opt,name=info,proto3" json:"info"`
+	Id       int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Mobile   string `protobuf:"bytes,2,opt,name=mobile,proto3" json:"mobile,omitempty"`
+	Nickname string `protobuf:"bytes,3,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	Sex      int64  `protobuf:"varint,4,opt,name=sex,proto3" json:"sex,omitempty"`
+	Avatar   string `protobuf:"bytes,5,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Info     string `protobuf:"bytes,6,opt,name=info,proto3" json:"info,omitempty"`
 }
 
 func (x *User) Reset() {
@@ -112,10 +112,10 @@ type UserAuth struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id       int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
-	UserId   int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId"`
-	AuthType string `protobuf:"bytes,3,opt,name=authType,proto3" json:"authType"`
-	AuthKey  string `protobuf:"bytes,4,opt,name=authKey,proto3" json:"authKey"`
+	Id       int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId   int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
+	AuthType string `protobuf:"bytes,3,opt,name=authType,proto3" json:"authType,omitempty"`
+	AuthKey  string `protobuf:"bytes,4,opt,name=authKey,proto3" json:"authKey,omitempty"`
 }
 
 func (x *UserAuth) Reset() {
@@ -183,11 +183,11 @@ type RegisterReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Mobile   string `protobuf:"bytes,1,opt,name=mobile,proto3" json:"mobile"`
-	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname"`
-	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password"`
-	AuthKey  string `protobuf:"bytes,4,opt,name=authKey,proto3" json:"authKey"`
-	AuthType string `protobuf:"bytes,5,opt,name=authType,proto3" json:"authType"`
+	Mobile   string `protobuf:"bytes,1,opt,name=mobile,proto3" json:"mobile,omitempty"`
+	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	AuthKey  string `protobuf:"bytes,4,opt,name=authKey,proto3" json:"authKey,omitempty"`
+	AuthType string `protobuf:"bytes,5,opt,name=authType,proto3" json:"authType,omitempty"`
 }
 
 func (x *RegisterReq) Reset() {
@@ -262,9 +262,9 @@ type RegisterResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccessToken  string `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken"`
-	AccessExpire int64  `protobuf:"varint,2,opt,name=accessExpire,proto3" json:"accessExpire"`
-	RefreshAfter int64  `protobuf:"varint,3,opt,name=refreshAfter,proto3" json:"refreshAfter"`
+	AccessToken  string `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
+	AccessExpire int64  `protobuf:"varint,2,opt,name=accessExpire,proto3" json:"accessExpire,omitempty"`
+	RefreshAfter int64  `protobuf:"varint,3,opt,name=refreshAfter,proto3" json:"refreshAfter,omitempty"`
 }
 
 func (x *RegisterResp) Reset() {
@@ -325,9 +325,9 @@ type LoginReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AuthType string `protobuf:"bytes,1,opt,name=authType,proto3" json:"authType"`
-	AuthKey  string `protobuf:"bytes,2,opt,name=authKey,proto3" json:"authKey"`
-	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password"`
+	AuthType string `protobuf:"bytes,1,opt,name=authType,proto3" json:"authType,omitempty"`
+	AuthKey  string `protobuf:"bytes,2,opt,name=authKey,proto3" json:"authKey,omitempty"`
+	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
 }
 
 func (x *LoginReq) Reset() {
@@ -388,9 +388,9 @@ type LoginResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccessToken  string `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken"`
-	AccessExpire int64  `protobuf:"varint,2,opt,name=accessExpire,proto3" json:"accessExpire"`
-	RefreshAfter int64  `protobuf:"varint,3,opt,name=refreshAfter,proto3" json:"refreshAfter"`
+	AccessToken  string `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
+	AccessExpire int64  `protobuf:"varint,2,opt,name=accessExpire,proto3" json:"accessExpire,omitempty"`
+	RefreshAfter int64  `protobuf:"varint,3,opt,name=refreshAfter,proto3" json:"refreshAfter,omitempty"`
 }
 
 func (x *LoginResp) Reset() {
@@ -451,7 +451,7 @@ type GetUserInfoReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *GetUserInfoReq) Reset() {
@@ -498,7 +498,7 @@ type GetUserInfoResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user"`
+	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
 func (x *GetUserInfoResp) Reset() {
@@ -545,8 +545,8 @@ type GetUserAuthByAuthKeyReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AuthKey  string `protobuf:"bytes,1,opt,name=authKey,proto3" json:"authKey"`
-	AuthType string `protobuf:"bytes,2,opt,name=authType,proto3" json:"authType"`
+	AuthKey  string `protobuf:"bytes,1,opt,name=authKey,proto3" json:"authKey,omitempty"`
+	AuthType string `protobuf:"bytes,2,opt,name=authType,proto3" json:"authType,omitempty"`
 }
 
 func (x *GetUserAuthByAuthKeyReq) Reset() {
@@ -600,7 +600,7 @@ type GetUserAuthByAuthKeyResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserAuth *UserAuth `protobuf:"bytes,1,opt,name=userAuth,proto3" json:"userAuth"`
+	UserAuth *UserAuth `protobuf:"bytes,1,opt,name=userAuth,proto3" json:"userAuth,omitempty"`
 }
 
 func (x *GetUserAuthByAuthKeyResp) Reset() {
@@ -647,8 +647,8 @@ type GetUserAuthByUserIdReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId   int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId"`
-	AuthType string `protobuf:"bytes,2,opt,name=authType,proto3" json:"authType"`
+	UserId   int64  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	AuthType string `protobuf:"bytes,2,opt,name=authType,proto3" json:"authType,omitempty"`
 }
 
 func (x *GetUserAuthByUserIdReq) Reset() {
@@ -702,7 +702,7 @@ type GetUserAuthyUserIdResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserAuth *UserAuth `protobuf:"bytes,1,opt,name=userAuth,proto3" json:"userAuth"`
+	UserAuth *UserAuth `protobuf:"bytes,1,opt,name=userAuth,proto3" json:"userAuth,omitempty"`
 }
 
 func (x *GetUserAuthyUserIdResp) Reset() {
@@ -749,7 +749,7 @@ type GenerateTokenReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserId int64 `protobuf:"varint,1,opt,name=userId,proto3" json:"userId"`
+	UserId int64 `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
 }
 
 func (x *GenerateTokenReq) Reset() {
@@ -796,9 +796,9 @@ type GenerateTokenResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AccessToken  string `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken"`
-	AccessExpire int64  `protobuf:"varint,2,opt,name=accessExpire,proto3" json:"accessExpire"`
-	RefreshAfter int64  `protobuf:"varint,3,opt,name=refreshAfter,proto3" json:"refreshAfter"`
+	AccessToken  string `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
+	AccessExpire int64  `protobuf:"varint,2,opt,name=accessExpire,proto3" json:"accessExpire,omitempty"`
+	RefreshAfter int64  `protobuf:"varint,3,opt,name=refreshAfter,proto3" json:"refreshAfter,omitempty"`
 }
 
 func (x *GenerateTokenResp) Reset() {

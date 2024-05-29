@@ -1,6 +1,6 @@
 Name: usercenter-api
 Host: 0.0.0.0
-Port: 1004
+Port: 3004
 Mode: dev
 
 # jwtAuth
@@ -34,4 +34,3 @@ UsercenterRpcConf:
   Endpoints:
     - 127.0.0.1:2004
   NonBlock: true
-

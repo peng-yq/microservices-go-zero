@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 
+	"microservices-go-zero/common/interceptor/rpcserver"
 	"microservices-go-zero/app/usercenter/cmd/rpc/internal/config"
 	"microservices-go-zero/app/usercenter/cmd/rpc/internal/server"
 	"microservices-go-zero/app/usercenter/cmd/rpc/internal/svc"
@@ -32,6 +33,10 @@ func main() {
 			reflection.Register(grpcServer)
 		}
 	})
+
+	//rpc log
+	s.AddUnaryInterceptors(rpcserver.LoggerInterceptor)
+
 	defer s.Stop()
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
