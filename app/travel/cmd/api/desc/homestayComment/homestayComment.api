@@ -1,0 +1,31 @@
+syntax = "v1"
+
+info (
+    title: "Homestay Comment Service"
+    desc: "Homestay Comment Service"
+    author: "pyq"
+    email: "eilo.penyq@foxmail.com"
+    version: "v1"
+)
+
+// Defines a Homestay Comment entity with various properties.
+type HomestayComment {
+    Id         int64   `json:"id"`
+    HomestayId int64   `json:"homestayId"` // ID of the homestay associated with the comment
+    Content    string  `json:"content"`    // Content of the comment
+    Star       float64 `json:"star"`       // Star rating given in the comment
+    UserId     int64   `json:"userId"`     // ID of the user who made the comment
+    Nickname   string  `json:"nickname"`   // Nickname of the user
+    Avatar     string  `json:"avatar"`     // Avatar of the user
+}
+
+// Request and response types for fetching a list of comments.
+type (
+    CommentListReq {
+       lastId   int64 `json:"lastId"`   // ID of the last comment fetched
+       pageSize int64 `json:"pageSize"` // Number of comments to fetch
+    }
+    CommentListResp {
+        List []HomestayComment `json:"list"` // List of comments
+    }
+)

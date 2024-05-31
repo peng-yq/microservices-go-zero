@@ -1,0 +1,66 @@
+syntax = "v1"
+
+info (
+    title: "Homestay Business Service"
+    desc: "Homestay Business Service"
+    author: "pyq"
+    email: "eilo.penyq@foxmail.com"
+    version: "v1"
+)
+
+// Defines a Homestay Business Boss entity with various properties.
+type HomestayBusinessBoss {
+    Id       int64  `json:"id"`
+    UserId   int64  `json:"userId"`
+    Nickname string `json:"nickname"`
+    Avatar   string `json:"avatar"`
+    Info     string `json:"info"` // Introduction of the homestay owner
+    Rank     int64  `json:"rank"` // Ranking
+}
+
+// Defines a Homestay Business entity with various properties.
+type HomestayBusiness {
+    Id        int64   `json:"id"`
+    Title     string  `json:"title"`     // Store name
+    Info      string  `json:"info"`      // Store introduction
+    Tags      string  `json:"tags"`      // Tags, separated by ','
+    Cover     string  `json:"cover"`     // Cover image
+    Star      float64 `json:"star"`      // Star rating
+    IsFav     int64   `json:"isFav"`     // Is favorite
+    HeaderImg string  `json:"headerImg"` // Storefront image
+}
+
+// Request and response types for fetching a list of good homestay business bosses.
+type (
+    GoodBossReq {
+    }
+    GoodBossResp {
+        List []HomestayBusinessBoss `json:"list"` // List of homestay business bosses
+    }
+)
+
+// Defines additional information for a Homestay Business in a list.
+type (
+    HomestayBusinessListInfo {
+        HomestayBusiness
+        SellMonth     int64 `json:"sellMonth"`     // Monthly sales
+        PersonConsume int64 `json:"personConsume"` // Personal consumption
+    }
+    HomestayBussinessListReq {
+        LastId   int64 `json:"lastId"`   // ID of the last item fetched
+        PageSize int64 `json:"pageSize"` // Number of items to fetch
+    }
+    HomestayBussinessListResp {
+        List []HomestayBusinessListInfo `json:"list"` // List of homestay businesses with additional info
+    }
+)
+
+// Request and response types for fetching details of a specific homestay business.
+type (
+    HomestayBussinessDetailReq {
+        Id int64 `json:"id"` // ID of the homestay business
+    }
+    HomestayBussinessDetailResp {
+        Boss HomestayBusinessBoss `json:"boss"` // Detailed information of the business boss
+    }
+)

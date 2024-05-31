@@ -1,0 +1,69 @@
+syntax = "v1"
+
+info (
+	title:   "Travel Service"
+	desc:    "Travel Service"
+	author:  "pyq"
+	email:   "eilo.penyq@foxmail.com"
+	version: "v1"
+)
+
+import (
+	"homestay/homestay.api"
+	"homestayBusiness/homestayBusiness.api"
+	"homestayComment/homestayComment.api"
+)
+
+// no need login
+@server (
+	prefix: travel/v1
+	group:  homestay
+)
+service travel {
+	@doc "homestay room list"
+	@handler homestayList
+	post /homestay/homestayList (HomestayListReq) returns (HomestayListResp)
+
+	@doc "boss all homestay room"
+	@handler businessList
+	post /homestay/businessList (BusinessListReq) returns (BusinessListResp)
+
+	@doc "guess you like homestay room"
+	@handler guessList
+	post /homestay/guessList (GuessListReq) returns (GuessListResp)
+
+	@doc "homestay room detail"
+	@handler homestayDetail
+	post /homestay/homestayDetail (HomestayDetailReq) returns (HomestayDetailResp)
+}
+
+// no need login
+@server (
+	prefix: travel/v1
+	group:  homestayBussiness
+)
+service travel {
+	@doc "good boss"
+	@handler goodBoss
+	post /homestayBussiness/goodBoss (GoodBossReq) returns (GoodBossResp)
+
+	@doc "business list"
+	@handler homestayBussinessList
+	post /homestayBussiness/homestayBussinessList (HomestayBussinessListReq) returns (HomestayBussinessListResp)
+
+	@doc "boss detail"
+	@handler homestayBussinessDetail
+	post /homestayBussiness/homestayBussinessDetail (HomestayBussinessDetailReq) returns (HomestayBussinessDetailResp)
+}
+
+// no need login
+@server (
+	prefix: travel/v1
+	group:  homestayComment
+)
+service travel {
+	@doc "homestay comment list"
+	@handler commentList
+	post /homestayComment/commentList (CommentListReq) returns (CommentListResp)
+}
+

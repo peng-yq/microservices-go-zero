@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+package pb;
+
+message Homestay {
+    int64   id = 1;
+    string  title = 2;
+    string  subTitle = 3;
+    string  banner = 4;
+    string  info = 5;
+    int64   peopleNum = 6;            // Number of people the homestay can accommodate
+    int64   homestayBusinessId = 7;   // Store ID
+    int64   userId = 8;               // Host ID
+    int64   rowState = 9;             // 0: Inactive, 1: Active
+    int64   rowType = 10;             // Selling type 0: by room, 1: by person
+    string  foodInfo = 11;            // Meal standards
+    int64   foodPrice = 12;           // Meal price
+    int64   homestayPrice = 13;       // Homestay price
+    int64   marketHomestayPrice = 14; // Market price of the homestay
+
+}
+
+message HomestayDetailReq {
+  int64   id = 1;
+}
+message HomestayDetailResp {
+  Homestay homestay = 1;
+}
+
+
+
+// service
+service travel {
+    // homestayDetail
+    rpc homestayDetail(HomestayDetailReq) returns(HomestayDetailResp);
+}
