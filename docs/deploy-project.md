@@ -37,10 +37,10 @@ FLUSH PRIVILEGES;
 
 使用`navicat`创建数据库并导入数据（创建数据库后，进入数据库并运行对应`sql`文件）：
 
-- 创建数据库`looklook_order`，导入`deploy/sql/looklook_order.sql`数据。
-- 创建数据库`looklook_payment`，导入`deploy/sql/looklook_payment.sql`数据。
-- 创建数据库`looklook_travel`，导入`deploy/sql/looklook_travel.sql`数据。
-- 创建数据库`looklook_usercenter`，导入`looklook_usercenter.sql`数据。
+- 创建数据库`microservices_order`，导入`deploy/sql/microservices_order.sql`数据。
+- 创建数据库`microservices_payment`，导入`deploy/sql/microservices_payment.sql`数据。
+- 创建数据库`microservices_travel`，导入`deploy/sql/microservices_travel.sql`数据。
+- 创建数据库`microservices_usercenter`，导入`microservices_usercenter.sql`数据。
 
 > 数据库字符集选择`utf8mb4`；排序规则选择`utf8mb4_general_ci`。       
 
@@ -84,7 +84,7 @@ docker-compose up -d
 curl  -X POST "http://127.0.0.1:8888/usercenter/v1/user/register" -H "Content-Type: application/json" -d "{\"mobile\":\"18888888888\",\"password\":\"123456\"}"
 ```
 
-服务访问成功将返回`code:200`，同时在`looklook_usercenter`数据库中能存在注册的用户条目。
+服务访问成功将返回`code:200`，同时在`microservices_usercenter`数据库中能存在注册的用户条目。
 
 ### 日志收集
 
@@ -98,7 +98,5 @@ filebeat收集日志 -> kafka -> go-stash消费kafka日志 -> 输出到es中 -> 
 
 1. 访问`kibana:http://127.0.0.1:5601/`， 创建日志索引
 2. 点击左上角菜单，选择`Analytics/discover` 
-3. 选择`Create index pattern`，输入`looklook-*`，点击`Next Step`，选择`@timestamp->Create index pattern`
+3. 选择`Create index pattern`，输入`microservices-*`，点击`Next Step`，选择`@timestamp->Create index pattern`
 4. 点击左上角菜单，选择`Analytics/discover`，日志显示
-
-<img src="https://cdn.jsdelivr.net/gh/peng-yq/Gallery/202405231439146.png">
