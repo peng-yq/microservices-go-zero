@@ -24,6 +24,27 @@ Flags:
       --style string    The file naming format, see (default "gozero")
 ```
 
+## 生产简易api接口文档
+
+使用`goctl`根据`api`文件生成生成`markdown`文档，需要进入每个服务下的`/cmd/api/desc`目录，并执行以下命令：
+
+```shell
+goctl api doc --dir .
+```
+
+```shell
+$ goctl api doc --help
+Generate doc files
+
+Usage:
+  goctl api doc [flags]
+
+Flags:
+      --dir string   The target dir
+  -h, --help         help for doc
+      --o string     The output markdown directory
+```
+
 ## 生成rpc业务代码
 
 1. 安装`protoc (>= 3.13.0)`
