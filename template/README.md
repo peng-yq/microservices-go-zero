@@ -9,9 +9,10 @@
    2. `main.tpl`
 2. `model`
    1. `err.tpl`
-   2. `import-no-cache.tpl`
-   3. `interface-update.tpl`
-   4. `update.tpl`
+   2. `import.tpl`
+   3. `import-no-cache.tpl`
+   4. `interface-update.tpl`
+   5. `update.tpl`
 3. `rpc`
    1. `main/tpl`
 

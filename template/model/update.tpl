@@ -219,6 +219,7 @@ func (m *default{{.upperStartCamelObject}}Model) FindPageListByPageWithTotal(ctx
 	}
 }
 
+// // Return the first pageSize records (del_state = 0) in the table whose id is less than preMinId, and orderBy id DESC
 func (m *default{{.upperStartCamelObject}}Model) FindPageListByIdDESC(ctx context.Context,builder squirrel.SelectBuilder ,preMinId ,pageSize int64) ([]*{{.upperStartCamelObject}},error) {
 
     builder = builder.Columns({{.lowerStartCamelObject}}Rows)
@@ -244,6 +245,7 @@ func (m *default{{.upperStartCamelObject}}Model) FindPageListByIdDESC(ctx contex
 	}
 }
 
+// Return the first pageSize records (del_state = 0) in the table whose id is bigger than preMinId, and orderBy id ASC
 func (m *default{{.upperStartCamelObject}}Model) FindPageListByIdASC(ctx context.Context,builder squirrel.SelectBuilder,preMaxId ,pageSize int64) ([]*{{.upperStartCamelObject}},error)  {
 
     builder = builder.Columns({{.lowerStartCamelObject}}Rows)
@@ -281,6 +283,7 @@ func (m *default{{.upperStartCamelObject}}Model) Trans(ctx context.Context,fn fu
 	{{end}}
 }
 
+// Returns a squirrel.SelectBuilder object for building SELECT statements in database queries.
 func(m *default{{.upperStartCamelObject}}Model)  SelectBuilder() squirrel.SelectBuilder {
 	return squirrel.Select().From(m.table)
 }

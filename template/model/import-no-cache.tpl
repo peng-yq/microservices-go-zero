@@ -6,7 +6,7 @@ import (
 
 	{{if .time}}"time"{{end}}
 
-	"miscroservices-go-zero/common/globalkey"
+	"microservices-go-zero/common/globalkey"
 	"github.com/Masterminds/squirrel"
 	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/stores/builder"
