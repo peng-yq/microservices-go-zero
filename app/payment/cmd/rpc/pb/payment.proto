@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+package pb;
+
+message CreatePaymentReq {
+  int64  userId = 1;
+  string payModel = 2;
+  int64  payTotal = 3; // fen
+  string orderSn = 4;
+  string serviceType = 5;
+}
+message CreatePaymentResp {
+  string sn = 1; // Transaction record number
+}
+
+message PaymentDetail {
+  int64 id = 1; // Payment ID
+  string sn = 2; // Serial Number
+  int64 userId = 3; // User ID
+  string payMode = 4; // Payment method WECHAT_PAY: WeChat Pay
+  string tradeType = 5; // Third-party payment type Jsapi/App, etc.
+  int64 tradeState = 6; // Transaction status 0: Unpaid 1: Payment successful -1: Payment failed
+  int64 payTotal = 7; // Total payment amount (in cents)
+  string transactionId = 8; // Third-party payment transaction ID
+  string tradeStateDesc = 9; // Payment status description
+  string orderSn = 10; // Business order number
+  string serviceType = 11; // Business type
+  int64 createTime = 12; // Creation time
+  int64 updateTime = 13; // Update time
+  int64 payStatus = 14; // Platform internal transaction status 0: Unpaid 1: Payment successful 2: Refunded -1: Payment failed
+  int64 payTime = 15; // Payment successful time
+}
+
+message GetPaymentBySnReq {
+  string   sn = 1;
+}
+message GetPaymentBySnResp {
+  PaymentDetail paymentDetail = 1;
+}
+
+message GetPaymentSuccessRefundByOrderSnReq {
+  string orderSn = 1;
+}
+
+message GetPaymentSuccessRefundByOrderSnResp {
+  PaymentDetail paymentDetail = 1;
+}
+
+// update trade state
+message UpdateTradeStateReq {
+  string   sn = 1;
+  string   tradeState = 2;
+  string   transactionId = 3;
+  string   tradeType = 4;
+  string   tradeStateDesc = 5;
+  int64    payStatus = 6;
+  int64    payTime = 7;
+}
+message UpdateTradeStateResp {
+}
+
+// service
+service payment {
+    // create a WeChat payment pre-processing order
+    rpc CreatePayment(CreatePaymentReq) returns(CreatePaymentResp);
+
+    // query transaction records based on sn
+    rpc GetPaymentBySn(GetPaymentBySnReq) returns(GetPaymentBySnResp);
+
+    // Query transaction records based on order sn
+    rpc GetPaymentSuccessRefundByOrderSn(GetPaymentSuccessRefundByOrderSnReq) returns(GetPaymentSuccessRefundByOrderSnResp);
+
+    // update trade state
+    rpc UpdateTradeState(UpdateTradeStateReq) returns(UpdateTradeStateResp);
+}
