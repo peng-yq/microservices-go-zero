@@ -47,6 +47,7 @@ git clone https://github.com/peng-yq/microservices-go-zero.git
 3. [modd](./docs/modd.md)
 4. [how to create microservices](./docs/how-to-create-microservices.md)
 5. [message queue and delay queue](./docs/message-queue-delay-queue-timed-queue.md)
+6. [grafana jaeger kibana](./docs/others.md)
 
 ## To-do
 

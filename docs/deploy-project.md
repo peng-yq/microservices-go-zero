@@ -52,7 +52,7 @@ docker-compose up -d
 
 > `docker-compose`创建完成后，使用`docker ps`查看是否所有容器都处于`up`状态。如果有一直`restarting`的容器，需要使用`docker logs 容器名`进行排查并重启。
 
-<img src="https://cdn.jsdelivr.net/gh/peng-yq/Gallery/202405231303989.png">
+<img src="https://cdn.jsdelivr.net/gh/peng-yq/Gallery/202406051625497.png">
 
 ### 查看项目运行情况
 
@@ -75,6 +75,34 @@ docker-compose up -d
 | Redis        | `127.0.0.1`                | 36379 | N/A    | G62m50oigInC30sf  | 使用工具如RedisManager查看                    |
 | Kafka        | `127.0.0.1`                | 9092  | N/A    | N/A               | 使用客户端工具查看pub/sub                      |
 | Nginx        | `http://127.0.0.1:8888/`   | N/A   | N/A    | N/A               | 用于访问API，如用户注册：`/usercenter/v1/user/register` |
+
+### 服务端口
+
+**Service**
+
+| service name | api service port(1xxx) | rpc service port(2xxx) | other service port(3xxx) |
+| ------------ | ---------------------- | ---------------------- | ------------------------ |
+| order        | 1001                   | 2001                   | mq-3001                  |
+| payment      | 1002                   | 2002                   |                          |
+| travel       | 1003                   | 2003                   |                          |
+| usercenter   | 1004                   | 2004                   |                          |
+| mqueue       | -                      | -                      | job-3002、schedule-3003  |
+
+**Prometheus**
+
+| service name     | prometheus port |
+| ---------------- | --------------- |
+| order-api        | 4001            |
+| order-rpc        | 4002            |
+| order-mq         | 4003            |
+| payment-api      | 4004            |
+| payment-rpc      | 4005            |
+| travel-api       | 4006            |
+| travel-rpc       | 4007            |
+| usercenter-api   | 4008            |
+| usercenter-rpc   | 4009            |
+| mqueue-job       | 4010            |
+| mqueue-scheduler | 4011            |
 
 ### 访问项目
 
@@ -100,3 +128,30 @@ filebeat收集日志 -> kafka -> go-stash消费kafka日志 -> 输出到es中 -> 
 2. 点击左上角菜单，选择`Analytics/discover` 
 3. 选择`Create index pattern`，输入`microservices-*`，点击`Next Step`，选择`@timestamp->Create index pattern`
 4. 点击左上角菜单，选择`Analytics/discover`，日志显示
+
+### 项目启动常见问题
+
+**filebeat**
+
+```shell
+Exiting: error loading config file: config file ("filebeat.yml") must be owned by the user identifier (uid=0) or root
+```
+
+解决办法：
+
+```shell
+sudo chown root deploy/filebeat/conf/filebeat.yml
+```
+
+**elasticserach**
+
+```shell
+ElasticsearchException[failed to bind service]; nested: AccessDeniedException[/usr/share/elasticsearch/data/nodes];
+Likely root cause: java.nio.file.AccessDeniedException: /usr/share/elasticsearch/data/nodes
+```
+
+解决办法：
+
+```shell
+sudo chmod 777 data/elasticsearch/data
+```
