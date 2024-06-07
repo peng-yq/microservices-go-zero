@@ -14,7 +14,7 @@
 
 ## Feature
 
-1. 使用`go-zero`框架进行开发，稳定、高性能。 
+1. 使用`go-zero`框架进行开发，使用`Apache-Jmeter 5.6.3`进行压力测试，系统能在高压环境下稳定、高性能运行。 
 
 2. 使用`Nginx`作为对外网关，前面可接入`SLB`负载均衡器，并配合`go-zero-jwt`进行认证。
 
@@ -25,6 +25,10 @@
 5. 使用`Filebeat`统一收集系统日志（各组件和业务），采集和转发日志数据到`Kafka`。使用`Go-Stash`替代`Logstash`进行日志过滤，高性能且资源消耗较低。使用`Prometheus`进行系统性能监控。使用`Jaeger`进行链路追踪，帮助微服务架构的监控和故障排查。`Elasticsearch`存储系统日志数据、监控数据和链路追踪数据，并进行数据分析。
 
 6. 数据库使用`mysql`，并使用`redis`作为缓存、消息队列和延时队列。
+
+## Pressure test
+
+[Apache-Jmeter 5.6.3 pressure test](./docs/pressure-test.md)
 
 ## How to use (deploy)
 
@@ -47,11 +51,12 @@ git clone https://github.com/peng-yq/microservices-go-zero.git
 3. [modd](./docs/modd.md)
 4. [how to create microservices](./docs/how-to-create-microservices.md)
 5. [message queue and delay queue](./docs/message-queue-delay-queue-timed-queue.md)
-6. [grafana jaeger kibana](./docs/others.md)
+6. [Apache-Jmeter 5.6.3 pressure test](./docs/pressure-test.md)
+7. [grafana jaeger kibana](./docs/others.md)
 
 ## To-do
 
-- [ ] 性能测试
+- [x] 性能测试
 - [ ] 完善业务逻辑
 - [ ] 增加单元测试
 - [ ] 完善安全措施，例如`RBAC`
