@@ -2,6 +2,8 @@
 
 `microservices-go-zero`基于`go-zero`的民宿微服务系统，包括用户中心服务、民宿服务、订单服务和支付服务。
 
+[项目详细介绍见博客](https://peng-yq.github.io/2024/07/08/microservices-go-zero/)。
+
 ## Structure
 
 **系统架构**
